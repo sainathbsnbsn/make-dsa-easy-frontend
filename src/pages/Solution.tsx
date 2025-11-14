@@ -107,7 +107,7 @@ const Solution = () => {
 
       <div className="max-w-4xl mx-auto px-6 mt-6 space-y-6">
         {approaches.map((approach, index) => (
-          <Card key={index} className="bg-gradient-card">
+          <Card key={index} className="border-2">
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div className="flex-1">
