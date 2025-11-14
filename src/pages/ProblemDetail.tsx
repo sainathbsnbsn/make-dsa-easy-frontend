@@ -126,7 +126,7 @@ You can return the answer in any order.`,
         </Card>
 
         {/* Action Buttons */}
-        <div className="space-y-3 sticky bottom-6">
+        <div className="sticky bottom-6 grid grid-cols-3 gap-2">
           <Button 
             size="lg" 
             className="w-full"
@@ -138,9 +138,18 @@ You can return the answer in any order.`,
             size="lg" 
             variant="outline"
             className="w-full"
+            onClick={() => navigate(`/hints/${problemId}`)}
           >
             <Lightbulb className="w-4 h-4 mr-2" />
             Show Hints
+          </Button>
+          <Button 
+            size="lg" 
+            variant="outline"
+            className="w-full"
+            onClick={() => navigate(`/solution/${problemId}`)}
+          >
+            Show Solution
           </Button>
         </div>
       </div>

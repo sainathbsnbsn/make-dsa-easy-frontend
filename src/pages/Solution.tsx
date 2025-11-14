@@ -11,10 +11,11 @@ const Solution = () => {
 
   const approaches = [
     {
+      level: "Good",
       title: "Brute Force",
       timeComplexity: "O(n²)",
       spaceComplexity: "O(1)",
-      description: "Use nested loops to check every pair of numbers.",
+      description: "Use nested loops to check every pair of numbers. Simple but inefficient for large inputs.",
       code: `public int[] twoSum(int[] nums, int target) {
     for (int i = 0; i < nums.length; i++) {
         for (int j = i + 1; j < nums.length; j++) {
@@ -27,31 +28,11 @@ const Solution = () => {
 }`,
     },
     {
-      title: "HashMap (Optimal)",
-      timeComplexity: "O(n)",
-      spaceComplexity: "O(n)",
-      description: "Use a HashMap to store complements for constant lookup time.",
-      code: `public int[] twoSum(int[] nums, int target) {
-    Map<Integer, Integer> map = new HashMap<>();
-    
-    for (int i = 0; i < nums.length; i++) {
-        int complement = target - nums[i];
-        
-        if (map.containsKey(complement)) {
-            return new int[] { map.get(complement), i };
-        }
-        
-        map.put(nums[i], i);
-    }
-    
-    return new int[] {};
-}`,
-    },
-    {
+      level: "Better",
       title: "Two-Pointer (Sorted)",
       timeComplexity: "O(n log n)",
       spaceComplexity: "O(n)",
-      description: "Sort the array and use two pointers from both ends. Note: This modifies indices.",
+      description: "Sort the array and use two pointers from both ends. Better than brute force but sorting adds overhead.",
       code: `public int[] twoSum(int[] nums, int target) {
     int[][] numsWithIndex = new int[nums.length][2];
     for (int i = 0; i < nums.length; i++) {
@@ -75,6 +56,28 @@ const Solution = () => {
         } else {
             right--;
         }
+    }
+    
+    return new int[] {};
+}`,
+    },
+    {
+      level: "Best",
+      title: "HashMap (Optimal)",
+      timeComplexity: "O(n)",
+      spaceComplexity: "O(n)",
+      description: "Use a HashMap to store complements for constant lookup time. This is the optimal solution with linear time complexity.",
+      code: `public int[] twoSum(int[] nums, int target) {
+    Map<Integer, Integer> map = new HashMap<>();
+    
+    for (int i = 0; i < nums.length; i++) {
+        int complement = target - nums[i];
+        
+        if (map.containsKey(complement)) {
+            return new int[] { map.get(complement), i };
+        }
+        
+        map.put(nums[i], i);
     }
     
     return new int[] {};
@@ -104,14 +107,28 @@ const Solution = () => {
 
       <div className="max-w-4xl mx-auto px-6 mt-6 space-y-6">
         {approaches.map((approach, index) => (
-          <Card key={index}>
+          <Card key={index} className="bg-gradient-card">
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div className="flex-1">
-                  <CardTitle className="flex items-center gap-3">
-                    <Code2 className="w-5 h-5 text-primary" />
-                    Approach {index + 1}: {approach.title}
-                  </CardTitle>
+                  <div className="flex items-center gap-3 mb-2">
+                    <Badge 
+                      variant="secondary" 
+                      className={
+                        approach.level === "Best" 
+                          ? "bg-green-500/10 text-green-700 dark:text-green-400" 
+                          : approach.level === "Better"
+                          ? "bg-amber-500/10 text-amber-700 dark:text-amber-400"
+                          : "bg-slate-500/10 text-slate-700 dark:text-slate-400"
+                      }
+                    >
+                      {approach.level}
+                    </Badge>
+                    <CardTitle className="flex items-center gap-2">
+                      <Code2 className="w-5 h-5 text-primary" />
+                      {approach.title}
+                    </CardTitle>
+                  </div>
                   <p className="text-muted-foreground mt-2">{approach.description}</p>
                 </div>
               </div>
@@ -150,16 +167,6 @@ const Solution = () => {
             </CardContent>
           </Card>
         ))}
-
-        <Card className="bg-primary/5">
-          <CardContent className="p-6">
-            <h3 className="font-semibold text-lg mb-2">💡 Recommended Approach</h3>
-            <p className="text-muted-foreground">
-              For this problem, the HashMap approach (Approach 2) is optimal with O(n) time complexity. 
-              It provides the best balance between time and space efficiency for most interview scenarios.
-            </p>
-          </CardContent>
-        </Card>
 
         <div className="flex gap-3">
           <Button 
