@@ -12,6 +12,7 @@ import ProblemList from "./pages/ProblemList";
 import ProblemDetail from "./pages/ProblemDetail";
 import CodeEditor from "./pages/CodeEditor";
 import Solution from "./pages/Solution";
+import Hints from "./pages/Hints";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/problem/:problemId" element={<ProblemDetail />} />
           <Route path="/editor/:problemId" element={<CodeEditor />} />
           <Route path="/solution/:problemId" element={<Solution />} />
+          <Route path="/hints/:problemId" element={<Hints />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
