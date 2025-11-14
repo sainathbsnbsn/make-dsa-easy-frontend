@@ -52,7 +52,7 @@ const Hints = () => {
         </div>
 
         {hints.map((hint, index) => (
-          <Card key={index} className="bg-gradient-card">
+          <Card key={index} className="border-2">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
                 <Lightbulb className="w-5 h-5 text-primary" />
