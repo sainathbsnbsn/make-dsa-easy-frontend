@@ -18,6 +18,7 @@ import Chat from "./pages/Chat";
 import Progress from "./pages/Progress";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
+import Auth from "./pages/Auth";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Splash />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="/home" element={<Home />} />
           <Route path="/patterns" element={<Patterns />} />
           <Route path="/companies" element={<Companies />} />
