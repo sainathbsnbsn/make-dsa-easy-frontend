@@ -3,6 +3,7 @@ import { ArrowLeft, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import BottomNav from "./BottomNav";
 
 const sampleProblems = [
   {
@@ -46,7 +47,7 @@ const ProblemList = () => {
   const navigate = useNavigate();
   const { category } = useParams();
 
-  const categoryTitle = category?.split('-').map(word => 
+  const categoryTitle = category?.split('-').map(word =>
     word.charAt(0).toUpperCase() + word.slice(1)
   ).join(' & ') || "Problems";
 
@@ -109,6 +110,7 @@ const ProblemList = () => {
           ))}
         </div>
       </div>
+      <BottomNav />
     </div>
   );
 };

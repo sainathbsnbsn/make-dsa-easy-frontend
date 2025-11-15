@@ -3,6 +3,7 @@ import { ArrowLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import BottomNav from "./BottomNav";
 
 const difficulties = [
   { level: "Easy", count: 127, color: "bg-green-500" },
@@ -52,6 +53,7 @@ const Difficulty = () => {
           ))}
         </div>
       </div>
+      <BottomNav />
     </div>
   );
 };

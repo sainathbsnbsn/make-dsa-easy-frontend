@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import BottomNav from "./BottomNav";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -147,6 +148,7 @@ const Home = () => {
           </div>
         </section>
       </div>
+      <BottomNav />
     </div>
   );
 };

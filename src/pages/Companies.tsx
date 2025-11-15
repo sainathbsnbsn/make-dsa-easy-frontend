@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import BottomNav from "./BottomNav";
 
 const companies = [
   { name: "Google", count: 156 },
@@ -55,6 +56,7 @@ const Companies = () => {
           ))}
         </div>
       </div>
+      <BottomNav />
     </div>
   );
 };

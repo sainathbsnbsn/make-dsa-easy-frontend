@@ -3,6 +3,7 @@ import { ArrowLeft, Building2, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import BottomNav from "./BottomNav";
 
 const ProblemDetail = () => {
   const navigate = useNavigate();
@@ -153,6 +154,8 @@ You can return the answer in any order.`,
           </Button>
         </div>
       </div>
+      <BottomNav />
+      
     </div>
   );
 };

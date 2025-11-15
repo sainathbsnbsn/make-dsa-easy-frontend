@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import BottomNav from "./BottomNav";
 
 const CodeEditor = () => {
   const navigate = useNavigate();
@@ -161,6 +162,7 @@ const CodeEditor = () => {
           </TabsContent>
         </Tabs>
       </div>
+      <BottomNav />
     </div>
   );
 };

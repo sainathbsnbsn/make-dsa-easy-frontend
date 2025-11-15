@@ -14,6 +14,10 @@ import CodeEditor from "./pages/CodeEditor";
 import Solution from "./pages/Solution";
 import Hints from "./pages/Hints";
 import NotFound from "./pages/NotFound";
+import Chat from "./pages/Chat";
+import Progress from "./pages/Progress";
+import Profile from "./pages/Profile";
+import Dashboard from "./pages/Dashboard";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +40,10 @@ const App = () => (
           <Route path="/editor/:problemId" element={<CodeEditor />} />
           <Route path="/solution/:problemId" element={<Solution />} />
           <Route path="/hints/:problemId" element={<Hints />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/progress" element={<Progress />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

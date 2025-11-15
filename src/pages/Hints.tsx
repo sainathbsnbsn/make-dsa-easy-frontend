@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import BottomNav from "./BottomNav";
 
 const Hints = () => {
   const navigate = useNavigate();
@@ -91,6 +92,7 @@ const Hints = () => {
           </Button>
         </div>
       </div>
+      <BottomNav />
     </div>
   );
 };

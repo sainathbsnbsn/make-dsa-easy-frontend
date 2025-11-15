@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import BottomNav from "./BottomNav";
 
 const Solution = () => {
   const navigate = useNavigate();
@@ -112,14 +113,14 @@ const Solution = () => {
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <Badge 
-                      variant="secondary" 
+                    <Badge
+                      variant="secondary"
                       className={
-                        approach.level === "Best" 
-                          ? "bg-green-500/10 text-green-700 dark:text-green-400" 
+                        approach.level === "Best"
+                          ? "bg-green-500/10 text-green-700 dark:text-green-400"
                           : approach.level === "Better"
-                          ? "bg-amber-500/10 text-amber-700 dark:text-amber-400"
-                          : "bg-slate-500/10 text-slate-700 dark:text-slate-400"
+                            ? "bg-amber-500/10 text-amber-700 dark:text-amber-400"
+                            : "bg-slate-500/10 text-slate-700 dark:text-slate-400"
                       }
                     >
                       {approach.level}
@@ -169,14 +170,14 @@ const Solution = () => {
         ))}
 
         <div className="flex gap-3">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             className="flex-1"
             onClick={() => navigate("/home")}
           >
             Back to Home
           </Button>
-          <Button 
+          <Button
             className="flex-1"
             onClick={() => navigate("/problems/arrays-hashing")}
           >
@@ -184,6 +185,7 @@ const Solution = () => {
           </Button>
         </div>
       </div>
+      <BottomNav />
     </div>
   );
 };
