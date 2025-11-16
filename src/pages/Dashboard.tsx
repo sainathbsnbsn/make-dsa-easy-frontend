@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Flame, Trophy, Target, Calendar, TrendingUp, Brain, Zap } from "lucide-react";
 import BottomNav from "./BottomNav";
+import StreakCalendar from "./StreakCalender";
+import StreakBadges from "./StreakBadges";
 
 const Dashboard = () => {
   const topics = [
@@ -14,23 +16,50 @@ const Dashboard = () => {
     { name: "Graphs", solved: 3, total: 15, progress: 20 },
   ];
 
-  // Generate 12 weeks of activity data (GitHub style)
-  const generateActivityData = () => {
-    const weeks = [];
-    for (let week = 0; week < 12; week++) {
-      const days = [];
-      for (let day = 0; day < 7; day++) {
-        // Random activity level (0-4)
-        const level = Math.floor(Math.random() * 5);
-        days.push(level);
-      }
-      weeks.push(days);
-    }
-    return weeks;
+  const activityData = {
+    // Sample activity data for the calendar
+    "2025-11-01": 2,
+    "2025-11-02": 1,
+    "2025-11-03": 3,
+    "2025-11-05": 1,
+    "2025-11-06": 2,
+    "2025-11-07": 1,
+    "2025-11-08": 4,
+    "2025-11-09": 2,
+    "2025-11-10": 1,
+    "2025-11-11": 3,
+    "2025-11-12": 2,
+    "2025-11-13": 1,
+    "2025-11-14": 2,
+    "2025-11-15": 3,
+    "2025-11-16": 1,
   };
 
-  const activityData = generateActivityData();
-  
+  const stats = {
+    currentStreak: 12,
+    thisMonth: 45,
+    totalSolved: 271,
+    longestStreak: 18,
+  };
+
+
+  // Generate 12 weeks of activity data (GitHub style)
+  // const generateActivityData = () => {
+  //   const weeks = [];
+  //   for (let week = 0; week < 12; week++) {
+  //     const days = [];
+  //     for (let day = 0; day < 7; day++) {
+  //       // Random activity level (0-4)
+  //       const level = Math.floor(Math.random() * 5);
+  //       days.push(level);
+  //     }
+  //     weeks.push(days);
+  //   }
+  //   return weeks;
+  // };
+
+  // const activityData = generateActivityData();
+
   const getActivityColor = (level: number) => {
     const colors = [
       "bg-muted/30",           // No activity
@@ -104,51 +133,9 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent className="space-y-6">
             {/* Stats Grid */}
-            <div className="grid grid-cols-3 gap-4">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-foreground">12</div>
-                <div className="text-xs text-muted-foreground">Current Streak</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-foreground">45</div>
-                <div className="text-xs text-muted-foreground">This Month</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-foreground">271</div>
-                <div className="text-xs text-muted-foreground">Total Solved</div>
-              </div>
-            </div>
+            <StreakCalendar activityData={activityData} />
 
             {/* Activity Grid */}
-            <div className="overflow-x-auto">
-              <div className="flex gap-1 min-w-max">
-                {activityData.map((week, weekIndex) => (
-                  <div key={weekIndex} className="flex flex-col gap-1">
-                    {week.map((level, dayIndex) => (
-                      <div
-                        key={`${weekIndex}-${dayIndex}`}
-                        className={`w-3 h-3 rounded-sm ${getActivityColor(level)} transition-all hover:ring-2 hover:ring-primary/50 cursor-pointer`}
-                        title={`${level} problems solved`}
-                      />
-                    ))}
-                  </div>
-                ))}
-              </div>
-              
-              {/* Legend */}
-              <div className="flex items-center gap-2 mt-4 text-xs text-muted-foreground">
-                <span>Less</span>
-                <div className="flex gap-1">
-                  {[0, 1, 2, 3, 4].map((level) => (
-                    <div
-                      key={level}
-                      className={`w-3 h-3 rounded-sm ${getActivityColor(level)}`}
-                    />
-                  ))}
-                </div>
-                <span>More</span>
-              </div>
-            </div>
 
             {/* Streak Stats */}
             <div className="pt-4 border-t space-y-3">
@@ -167,6 +154,8 @@ const Dashboard = () => {
                 <span className="text-sm font-semibold">18 days</span>
               </div>
             </div>
+            <StreakBadges currentStreak={stats.currentStreak} longestStreak={stats.longestStreak} />
+
           </CardContent>
         </Card>
 

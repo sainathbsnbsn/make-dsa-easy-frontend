@@ -41,6 +41,41 @@ const sampleProblems = [
     difficulty: "Medium",
     pattern: "Two Pointers",
   },
+  {
+    id: "two-sum",
+    title: "Two Sum",
+    companies: ["Amazon", "Google"],
+    difficulty: "Easy",
+    pattern: "Arrays & Hashing",
+  },
+  {
+    id: "group-anagrams",
+    title: "Group Anagrams",
+    companies: ["Meta"],
+    difficulty: "Medium",
+    pattern: "Arrays & Hashing",
+  },
+  {
+    id: "subarray-sum-equals-k",
+    title: "Subarray Sum Equals K",
+    companies: ["Facebook", "Google"],
+    difficulty: "Medium",
+    pattern: "Arrays & Hashing",
+  },
+  {
+    id: "container-with-most-water",
+    title: "Container With Most Water",
+    companies: ["Amazon"],
+    difficulty: "Medium",
+    pattern: "Two Pointers",
+  },
+  {
+    id: "three-sum",
+    title: "3Sum",
+    companies: ["Amazon", "Microsoft"],
+    difficulty: "Medium",
+    pattern: "Two Pointers",
+  },
 ];
 
 const ProblemList = () => {
@@ -101,11 +136,6 @@ const ProblemList = () => {
                   </Badge>
                 </div>
               </CardHeader>
-              <CardContent>
-                <Button variant="default" size="sm" className="w-full">
-                  Open
-                </Button>
-              </CardContent>
             </Card>
           ))}
         </div>
