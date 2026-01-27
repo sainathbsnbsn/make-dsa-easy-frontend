@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import CodeBlock from "@/components/CodeBlock";
 import BottomNav from "./BottomNav";
 
 const Solution = () => {
@@ -150,19 +151,13 @@ const Solution = () => {
                   <TabsTrigger value="python">Python</TabsTrigger>
                 </TabsList>
                 <TabsContent value="java">
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-                    <code className="text-sm font-mono">{approach.code}</code>
-                  </pre>
+                  <CodeBlock code={approach.code} language="java" />
                 </TabsContent>
                 <TabsContent value="cpp">
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-                    <code className="text-sm font-mono">// C++ implementation coming soon</code>
-                  </pre>
+                  <CodeBlock code="// C++ implementation coming soon" language="cpp" />
                 </TabsContent>
                 <TabsContent value="python">
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-                    <code className="text-sm font-mono"># Python implementation coming soon</code>
-                  </pre>
+                  <CodeBlock code="# Python implementation coming soon" language="python" />
                 </TabsContent>
               </Tabs>
             </CardContent>
