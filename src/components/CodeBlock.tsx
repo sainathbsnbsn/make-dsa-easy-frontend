@@ -1,4 +1,11 @@
-import { Highlight, PrismTheme } from "prism-react-renderer";
+import { Highlight, themes, type PrismTheme } from "prism-react-renderer";
+import Prism from "prismjs";
+
+// Add Java language support
+import "prismjs/components/prism-java";
+import "prismjs/components/prism-python";
+import "prismjs/components/prism-c";
+import "prismjs/components/prism-cpp";
 
 interface CodeBlockProps {
   code: string;
@@ -13,19 +20,19 @@ const customLightTheme: PrismTheme = {
   },
   styles: [
     {
-      types: ["keyword"],
-      style: { color: "#cf222e" }, // Red for keywords (public, class, int, for, if, return, new)
+      types: ["keyword", "control-flow"],
+      style: { color: "#cf222e", fontWeight: "bold" }, // Red for keywords (public, class, int, for, if, return, new)
     },
     {
-      types: ["class-name", "maybe-class-name"],
+      types: ["class-name", "maybe-class-name", "namespace"],
       style: { color: "#8250df" }, // Purple for class names
     },
     {
-      types: ["builtin", "type"],
-      style: { color: "#0550ae" }, // Blue for types (int, boolean, String, etc.)
+      types: ["builtin", "type-annotation"],
+      style: { color: "#0550ae" }, // Blue for types
     },
     {
-      types: ["function"],
+      types: ["function", "method"],
       style: { color: "#8250df" }, // Purple for function names
     },
     {
@@ -45,7 +52,7 @@ const customLightTheme: PrismTheme = {
       style: { color: "#57606a", fontStyle: "italic" }, // Gray italic for comments
     },
     {
-      types: ["punctuation"],
+      types: ["punctuation", "bracket"],
       style: { color: "#24292f" }, // Black for punctuation
     },
     {
@@ -72,20 +79,13 @@ const customLightTheme: PrismTheme = {
 };
 
 const CodeBlock = ({ code, language = "java" }: CodeBlockProps) => {
-  // Map language to prism-react-renderer supported languages
-  const getLanguage = (lang: string) => {
-    const langMap: Record<string, string> = {
-      java: "java",
-      cpp: "cpp",
-      python: "python",
-      javascript: "javascript",
-      typescript: "typescript",
-    };
-    return langMap[lang] || "javascript";
-  };
-
   return (
-    <Highlight theme={customLightTheme} code={code.trim()} language={getLanguage(language)}>
+    <Highlight 
+      theme={customLightTheme} 
+      code={code.trim()} 
+      language={language as any}
+      prism={Prism as any}
+    >
       {({ style, tokens, getLineProps, getTokenProps }) => (
         <pre
           className="p-4 rounded-lg overflow-x-auto text-sm border border-border font-mono leading-relaxed"
