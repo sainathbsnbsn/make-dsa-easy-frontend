@@ -5,63 +5,95 @@ interface CodeBlockProps {
   language?: string;
 }
 
-// Custom light theme matching the screenshot colors
+// Custom light theme matching the screenshot - colorful syntax highlighting
 const customLightTheme: PrismTheme = {
   plain: {
-    color: "#000000",
-    backgroundColor: "#f8f8f8",
+    color: "#24292f",
+    backgroundColor: "#f6f8fa",
   },
   styles: [
     {
-      types: ["keyword", "operator"],
-      style: { color: "#d73a49" }, // Pink/magenta for keywords
+      types: ["keyword"],
+      style: { color: "#cf222e" }, // Red for keywords (public, class, int, for, if, return, new)
     },
     {
-      types: ["builtin", "class-name", "type"],
-      style: { color: "#0000ff" }, // Blue for types
+      types: ["class-name", "maybe-class-name"],
+      style: { color: "#8250df" }, // Purple for class names
+    },
+    {
+      types: ["builtin", "type"],
+      style: { color: "#0550ae" }, // Blue for types (int, boolean, String, etc.)
     },
     {
       types: ["function"],
-      style: { color: "#6f42c1" }, // Purple for functions
+      style: { color: "#8250df" }, // Purple for function names
     },
     {
-      types: ["string", "char"],
-      style: { color: "#0000ff" }, // Blue for strings
+      types: ["string", "char", "attr-value"],
+      style: { color: "#0a3069" }, // Dark blue for strings
     },
     {
-      types: ["number", "boolean"],
-      style: { color: "#0000ff" }, // Blue for numbers/booleans
+      types: ["number"],
+      style: { color: "#0550ae" }, // Blue for numbers
+    },
+    {
+      types: ["boolean"],
+      style: { color: "#cf222e" }, // Red for booleans
     },
     {
       types: ["comment", "prolog", "doctype", "cdata"],
-      style: { color: "#008000" }, // Green for comments
+      style: { color: "#57606a", fontStyle: "italic" }, // Gray italic for comments
     },
     {
       types: ["punctuation"],
-      style: { color: "#000000" }, // Black for punctuation
+      style: { color: "#24292f" }, // Black for punctuation
     },
     {
-      types: ["variable", "parameter"],
-      style: { color: "#000000" }, // Black for variables
+      types: ["operator"],
+      style: { color: "#cf222e" }, // Red for operators
+    },
+    {
+      types: ["variable", "parameter", "property"],
+      style: { color: "#953800" }, // Orange/brown for variables
+    },
+    {
+      types: ["constant"],
+      style: { color: "#0550ae" }, // Blue for constants
+    },
+    {
+      types: ["tag"],
+      style: { color: "#116329" }, // Green for tags
     },
     {
       types: ["attr-name"],
-      style: { color: "#d73a49" }, // Pink for attributes
+      style: { color: "#0550ae" }, // Blue for attribute names
     },
   ],
 };
 
 const CodeBlock = ({ code, language = "java" }: CodeBlockProps) => {
+  // Map language to prism-react-renderer supported languages
+  const getLanguage = (lang: string) => {
+    const langMap: Record<string, string> = {
+      java: "java",
+      cpp: "cpp",
+      python: "python",
+      javascript: "javascript",
+      typescript: "typescript",
+    };
+    return langMap[lang] || "javascript";
+  };
+
   return (
-    <Highlight theme={customLightTheme} code={code.trim()} language={language}>
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+    <Highlight theme={customLightTheme} code={code.trim()} language={getLanguage(language)}>
+      {({ style, tokens, getLineProps, getTokenProps }) => (
         <pre
-          className="bg-[#f8f8f8] p-4 rounded-lg overflow-x-auto text-sm border border-border"
+          className="p-4 rounded-lg overflow-x-auto text-sm border border-border font-mono leading-relaxed"
           style={{ ...style, margin: 0 }}
         >
           {tokens.map((line, i) => (
             <div key={i} {...getLineProps({ line })}>
-              <span className="inline-block w-8 text-gray-400 select-none text-right mr-4">
+              <span className="inline-block w-8 text-muted-foreground select-none text-right mr-4 text-xs">
                 {i + 1}
               </span>
               {line.map((token, key) => (
