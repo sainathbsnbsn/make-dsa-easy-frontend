@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Code } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integration/auth/Client";
+ import { supabase } from "@/integrations/supabase/client";
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -40,12 +40,11 @@ const Auth = () => {
           description: "Please check your email to verify your account.",
         });
       } else {
-        // const { error } = await supabase.auth.signInWithPassword({
-        //   email,
-        //   password,
-        // });
+         const { error } = await supabase.auth.signInWithPassword({
+           email,
+           password,
+         });
 
-        const error = false;
         if (error) throw error;
 
         navigate("/home");
