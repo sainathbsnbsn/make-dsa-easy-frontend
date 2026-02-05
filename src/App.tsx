@@ -1,4 +1,5 @@
-import { Toaster } from "@/components/ui/toaster";
+ import { ThemeProvider } from "@/components/ThemeProvider";
+ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -22,36 +23,38 @@ import Auth from "./pages/Auth";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Splash />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/patterns" element={<Patterns />} />
-          <Route path="/companies" element={<Companies />} />
-          <Route path="/difficulty" element={<Difficulty />} />
-          <Route path="/problems/:category" element={<ProblemList />} />
-          <Route path="/problems/company/:company" element={<ProblemList />} />
-          <Route path="/problems/difficulty/:level" element={<ProblemList />} />
-          <Route path="/problem/:problemId" element={<ProblemDetail />} />
-          <Route path="/editor/:problemId" element={<CodeEditor />} />
-          <Route path="/solution/:problemId" element={<Solution />} />
-          <Route path="/hints/:problemId" element={<Hints />} />
-          <Route path="/chat" element={<Chat />} />
-          <Route path="/progress" element={<Progress />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+ const App = () => (
+   <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+     <QueryClientProvider client={queryClient}>
+       <TooltipProvider>
+         <Toaster />
+         <Sonner />
+         <BrowserRouter>
+           <Routes>
+             <Route path="/" element={<Splash />} />
+             <Route path="/auth" element={<Auth />} />
+             <Route path="/home" element={<Home />} />
+             <Route path="/patterns" element={<Patterns />} />
+             <Route path="/companies" element={<Companies />} />
+             <Route path="/difficulty" element={<Difficulty />} />
+             <Route path="/problems/:category" element={<ProblemList />} />
+             <Route path="/problems/company/:company" element={<ProblemList />} />
+             <Route path="/problems/difficulty/:level" element={<ProblemList />} />
+             <Route path="/problem/:problemId" element={<ProblemDetail />} />
+             <Route path="/editor/:problemId" element={<CodeEditor />} />
+             <Route path="/solution/:problemId" element={<Solution />} />
+             <Route path="/hints/:problemId" element={<Hints />} />
+             <Route path="/chat" element={<Chat />} />
+             <Route path="/progress" element={<Progress />} />
+             <Route path="/profile" element={<Profile />} />
+             <Route path="/dashboard" element={<Dashboard />} />
+             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+             <Route path="*" element={<NotFound />} />
+           </Routes>
+         </BrowserRouter>
+       </TooltipProvider>
+     </QueryClientProvider>
+   </ThemeProvider>
+ );
 
 export default App;
