@@ -15,6 +15,8 @@ import CodeEditor from "./pages/CodeEditor";
 import Solution from "./pages/Solution";
 import Hints from "./pages/Hints";
 import NotFound from "./pages/NotFound";
+ import Admin from "./pages/Admin";
+ import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
 import Chat from "./pages/Chat";
 import Progress from "./pages/Progress";
 import Profile from "./pages/Profile";
@@ -48,6 +50,14 @@ const queryClient = new QueryClient();
              <Route path="/progress" element={<Progress />} />
              <Route path="/profile" element={<Profile />} />
              <Route path="/dashboard" element={<Dashboard />} />
+               <Route
+                 path="/admin"
+                 element={
+                   <ProtectedAdminRoute>
+                     <Admin />
+                   </ProtectedAdminRoute>
+                 }
+               />
              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
              <Route path="*" element={<NotFound />} />
            </Routes>
