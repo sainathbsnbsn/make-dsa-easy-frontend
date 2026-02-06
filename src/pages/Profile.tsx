@@ -2,15 +2,18 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
- import { Settings, LogOut, Mail, Calendar, Trophy, Moon, Sun } from "lucide-react";
- import { useTheme } from "next-themes";
- import { Switch } from "@/components/ui/switch";
- import { Label } from "@/components/ui/label";
+import { Settings, LogOut, Mail, Calendar, Trophy, Moon, Sun, Shield } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 import BottomNav from "./BottomNav";
 
 const Profile = () => {
-   const { theme, setTheme } = useTheme();
- 
+  const { theme, setTheme } = useTheme();
+  const { isAdmin, signOut } = useAuth();
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Header */}
@@ -76,28 +79,44 @@ const Profile = () => {
 
         {/* Actions */}
         <div className="space-y-2">
-           <Card>
-             <CardContent className="flex items-center justify-between py-4">
-               <div className="flex items-center gap-3">
-                 {theme === "dark" ? (
-                   <Moon className="w-5 h-5 text-muted-foreground" />
-                 ) : (
-                   <Sun className="w-5 h-5 text-muted-foreground" />
-                 )}
-                 <Label htmlFor="dark-mode" className="font-medium">Dark Mode</Label>
-               </div>
-               <Switch
-                 id="dark-mode"
-                 checked={theme === "dark"}
-                 onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
-               />
-             </CardContent>
-           </Card>
+          {isAdmin && (
+            <Button 
+              variant="outline" 
+              className="w-full justify-start" 
+              size="lg"
+              onClick={() => navigate("/admin")}
+            >
+              <Shield className="w-4 h-4 mr-2" />
+              Admin Panel
+            </Button>
+          )}
+          <Card>
+            <CardContent className="flex items-center justify-between py-4">
+              <div className="flex items-center gap-3">
+                {theme === "dark" ? (
+                  <Moon className="w-5 h-5 text-muted-foreground" />
+                ) : (
+                  <Sun className="w-5 h-5 text-muted-foreground" />
+                )}
+                <Label htmlFor="dark-mode" className="font-medium">Dark Mode</Label>
+              </div>
+              <Switch
+                id="dark-mode"
+                checked={theme === "dark"}
+                onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+              />
+            </CardContent>
+          </Card>
           <Button variant="outline" className="w-full justify-start" size="lg">
             <Settings className="w-4 h-4 mr-2" />
             Settings
           </Button>
-          <Button variant="outline" className="w-full justify-start text-destructive hover:text-destructive" size="lg">
+          <Button 
+            variant="outline" 
+            className="w-full justify-start text-destructive hover:text-destructive" 
+            size="lg"
+            onClick={signOut}
+          >
             <LogOut className="w-4 h-4 mr-2" />
             Log Out
           </Button>
