@@ -50,14 +50,7 @@ const queryClient = new QueryClient();
              <Route path="/progress" element={<Progress />} />
              <Route path="/profile" element={<Profile />} />
              <Route path="/dashboard" element={<Dashboard />} />
-               <Route
-                 path="/admin"
-                 element={
-                   <ProtectedAdminRoute>
-                     <Admin />
-                   </ProtectedAdminRoute>
-                 }
-               />
+              <Route path="/admin" element={<Admin />} />
              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
              <Route path="*" element={<NotFound />} />
            </Routes>
