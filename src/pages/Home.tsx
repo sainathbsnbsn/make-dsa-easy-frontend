@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, TrendingUp, BookOpen, Building2, BarChart3, Clock, Bookmark } from "lucide-react";
+import { Search, TrendingUp, BookOpen, Building2, BarChart3, Clock, Bookmark, PlusCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -142,6 +142,21 @@ const Home = () => {
                 <div className="flex-1">
                   <p className="font-semibold text-foreground">Saved Problems</p>
                   <p className="text-sm text-muted-foreground">Your bookmarked challenges</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card 
+              className="cursor-pointer hover:shadow-card transition-all border-primary/30"
+              onClick={() => navigate("/admin")}
+            >
+              <CardContent className="p-4 flex items-center gap-4">
+                <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+                  <PlusCircle className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold text-foreground">Add New Problem</p>
+                  <p className="text-sm text-muted-foreground">Contribute a new challenge</p>
                 </div>
               </CardContent>
             </Card>
